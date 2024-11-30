@@ -84,3 +84,72 @@ export default App;
 Everytime we fetch data, we udate state. When we re-render a new versio of ```fetchImages``` is created. The ```useEffect``` function runs again because it sees an element in its dependncy array has changed.
 
 useCallback hook can be used to stop here, wrap fetch function in useCallback to fix this useCallback(fetchImages,[]) and then use it to call instead of fetchImages
+
+#### Componen vs page in react
+A component is a resuasble react comonent that show s a handlful of elements
+A Page is still a react component. Not intended to be reused
+
+
+### Design System process
+There are a total of 8 steps involved in this
+![Design process](./images/design_system_process.png)
+
+#### Functional way of updating state
+![functionanl_state_update](./images/functionanl_state_update.png)
+
+### Event capturing & bubbling
+
+In web development, event capture and event bubbling are two phases of how events propagate through the DOM (Document Object Model). These concepts are part of the event flow mechanism, which describes how events travel through the DOM hierarchy when a user interacts with an element.
+
+#### Event Flow Phases
+##### Event Capturing Phase
+Also called the "trickling phase".
+Events propagate from the root element down to the target element.
+In this phase, parent elements get a chance to handle the event before the target element is reached.
+##### Target Phase
+The event reaches the target element.
+If an event listener is attached to the target element, it will be executed during this phase.
+##### Event Bubbling Phase
+Events propagate from the target element up to the root element.
+In this phase, parent elements get a chance to handle the event after the target element has processed it.
+
+![event_capturing_bubbling](./images/event_capturing_bubbling.jpg)
+
+### useRef
+Allows a component to get a reference to a DOM element that it creates
+Mostly it holds ref to DOM elements, but can also hold a value
+
+- creates a ref to component by calling useRef, 
+- assign ref to a JSX element as a prop called ref
+- access that DOM element with ref.current
+
+
+#### Standard browser behaviour
+When the browser loads a new HTML doc, all existing JS variables and code is dumped
+
+
+### Naviagation in React
+
+![navigation_in_react](./images/navigation_in_react.png)
+
+
+window.location = xxxx 
+The above causes a full page refresh
+
+window.history.pushState({}, '','/dropdown')
+Updates the address bar but doesn't cause a refresh
+
+
+window emits a 'popstate' event if the user current url was added by 'pushState'
+
+### Navigation Libraries
+
+- React Router
+- Wouter
+- Reach-location
+- Reach-Router
+
+
+#### useReducer
+
+![useReducer](./images/useReducer.png)
