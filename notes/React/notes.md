@@ -85,7 +85,7 @@ Everytime we fetch data, we udate state. When we re-render a new versio of ```fe
 
 useCallback hook can be used to stop here, wrap fetch function in useCallback to fix this useCallback(fetchImages,[]) and then use it to call instead of fetchImages
 
-#### Componen vs page in react
+#### Component vs page in react
 A component is a resuasble react comonent that show s a handlful of elements
 A Page is still a react component. Not intended to be reused
 
@@ -152,4 +152,118 @@ window emits a 'popstate' event if the user current url was added by 'pushState'
 
 #### useReducer
 
-![useReducer](./images/useReducer.png)
+<div style="display: flex; justify-content: space-between;">
+  <img src="./images/useReducer.png" alt="useReducer" style="width: 48%; margin-right: 10px;" />
+  <img src="./images/useStateVsReducer.png" alt="useStateVsReducer" style="width: 49%;" />
+</div>
+
+``` js
+
+// useReducer implementation
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { ...state, count: state.count + 1 };
+    case 'DECREMENT':
+      return { ...state, count: state.count - 1 };
+    case 'VALUE_TO_ADD':
+      return { ...state, valueToAdd: action.payload };
+    case 'ADD_VALUE':
+      return { ...state, count: state.count + state.valueToAdd, valueToAdd: 0 };
+    default:
+      return state;
+  }
+};
+
+const [state, dispatch] = useReducer(reducer, {
+  count: initialCount,
+  valueToAdd: 0,
+});
+
+  function increment() {
+  dispatch({ type: 'INCREMENT' });
+}
+```
+
+### Immer
+Immer is a tiny package that allows you to work with immutable state in a more convenient way.
+
+Redux Toolkit (RTK), the official recommended approach for writing Redux logic, uses Immer under the hood. Immer simplifies the process of working with immutable state updates by allowing you to write code that "mutates" state directly, which Immer then converts into safe, immutable updates.
+
+Here’s how it works in Redux Toolkit:
+
+When you use createSlice or createReducer in RTK, you can write reducers that directly "mutate" the state.Immer ensures these mutations are actually translated into immutable updates, so your state remains immutable as per Redux's requirements.
+### Redux
+It is a state management library using same techniques as useReducer
+![Redux](./images/redux.png)
+
+With useReducer we only have one function to manage state, where as with redux we will have multiple reducer functions, each to manage diff part of state
+
+
+![redux-redx-tool-kit](./images/reduxVSredux-tool-kit.png)
+![redux-tool-kit](./images/reduxtoolkit.png)
+
+slice automatically create reducers and actionTypes
+
+```js
+// sample redux store setup
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+
+const songsSlice = createSlice({
+  name: "song",
+  initialState: [],
+  reducers: {
+    // state is not big state object, its only piece of state managed by this reducer
+    addSong(state, action) {
+      state.push(action.payload);
+    },
+    removeSong(state, action) {},
+  },
+});
+
+const store = configureStore({
+  reducer: {
+    songs: songsSlice.reducer,
+  },
+});
+
+console.log(store);
+const startingState = store.getState();
+console.log(JSON.stringify(startingState));
+store.dispatch({
+  type: 'song/addSong',
+  payload: 'New song'
+})
+
+console.log(JSON.stringify( store.getState()));
+console.log(songsSlice.actions)
+console.log(songsSlice.actions.addSong('sdfsdff'))
+
+store.dispatch(songsSlice.actions.addSong('secret'))
+console.log(JSON.stringify( store.getState()));
+
+```
+
+##### Slices
+- Defines some initial state
+- Combines 'mini-reducers' into a big reducer
+- Creates a set of 'action creator' functions
+
+The mini-reducers written in slice are like case statements we write in  a reducer, createSlice functions combines them to create a single reducer, that is the reason we are referring to it as songsSlice.reducer while configuring store
+
+![slices-actions](./images/slices_actions.png)
+![redux-store1](./images/redux-store1.png)
+![actions-reducers](./images/actions_reducers.png)
+ 
+
+
+| ![organizing-redux-by-function](./images/organizing_slices_redux_function.png) | ![organizing-redux-by-feature](./images/organizing_slices_redux_feature.png) |
+|-------------------------|-------------------------|
+
+
+
+### React Router
+
+
+![react-router-routing](./images/react-router-routing.png) 
