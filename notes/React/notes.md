@@ -267,3 +267,43 @@ The mini-reducers written in slice are like case statements we write in  a reduc
 
 
 ![react-router-routing](./images/react-router-routing.png) 
+
+
+
+
+## React 19
+
+useOptimistic
+useTransition
+useRef
+use
+
+### Components:
+#### Fragment: 
+for using key on these, <></> can't be used
+<Fragment key={yourKey}>...</Fragment>
+https://codesandbox.io/p/sandbox/react-fragement-8lczmq
+
+
+#### Profiler: 
+ lets you measure rendering performance of a React tree programmatically.
+
+ https://codesandbox.io/p/sandbox/x98wyv?file=%2Fsrc%2FApp.js%3A31%2C11
+
+ #### Strict Mode
+ Use StrictMode to enable additional development behaviors and warnings for the component tree inside:
+ Strict Mode always calls your rendering function twice, so you can see the mistake right away 
+
+ ```
+ import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+https://react.dev/reference/react/StrictMode#usage

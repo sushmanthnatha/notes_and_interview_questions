@@ -72,3 +72,28 @@ The Builder Design Pattern is a creational pattern used in software design to co
 #### Prototype
 The Prototype Design Pattern is a creational pattern that enables the creation of new objects by copying an existing object. Prototype allows us to hide the complexity of making new instances from the client. The existing object acts as a prototype and contains the state of the object.
 
+### Structural Design patters
+
+#### Adapter
+Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate. It enables the usage of an existing class’s interface as an additional interface is the adapter design pattern. To make two incompatible interfaces function together, it serves as a bridge. This pattern involves a single class, the adapter, responsible for joining functionalities of independent or incompatible interfaces.
+
+Usecases
+Different Data Formats
+Legacy System Integration
+
+Examples
+Legacy printer to new printer
+Grocery item to Item (ex in swiggy)
+
+
+#### Bridge
+Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.
+
+ * Major components to achieve bridge patterns are :
+ * 1. Abstraction : This is main abstract class which client uses.
+ * 2. RefinedAbstraction - This is the class which extends abstraction
+ * 3. Implementor : Interface for the implementation hierarchy.
+ * 4. Concrete Implementor - Implementation of the implementor.
+
+
+ #### Decorator
