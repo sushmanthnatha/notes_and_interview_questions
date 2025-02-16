@@ -1,11 +1,36 @@
 # React
 
+## React 16
+Hooks in (16.8)
+
+## React 18
+ Automatic batching for fewer renders ( grouping state updates)
+ Suspense
+
+ useId
+ useTransition
+ useDeferredValue
+ useInsertionEffect
+
+## React 19
+
+use (API)
+Actions
+ServerComponents
+
+useOptimistic
+useTransition
+useRef
+useActionState
+
+
+
 #### Fast Refresh
 Fast refresh is a React feature integrated into Next.js that allows you live reload the browser page while maintaining temporary client-side state when you save changes to a file. It's enabled by default in all Next.js applications on 9.4 or newer. With Fast Refresh enabled, most edits should be visible within a second
 
 In general, Fast Refresh works with React 16.10 or later.
 
-#### What is json-server?
+#### JSON-SERVER
 json-server is a simple, lightweight tool that allows you to create a fake REST API quickly. It's ideal for prototyping, mock data, or testing front-end applications without needing a full backend.
 
 With json-server, you can:
@@ -79,6 +104,11 @@ export default App;
 - Follows similar conventions as useEffect
 
 ![useEffect eslint callback](./images/useEffect_elist_callback.png)
+
+#### UseTransition
+
+#### UseOptimistic
+
 
 ##### why is app making endless stream of requests ?
 Everytime we fetch data, we udate state. When we re-render a new versio of ```fetchImages``` is created. The ```useEffect``` function runs again because it sees an element in its dependncy array has changed.
@@ -271,12 +301,7 @@ The mini-reducers written in slice are like case statements we write in  a reduc
 
 
 
-## React 19
 
-useOptimistic
-useTransition
-useRef
-use
 
 ### Components:
 #### Fragment: 
