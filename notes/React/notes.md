@@ -107,7 +107,13 @@ export default App;
 
 #### UseTransition
 
+
+
 #### UseOptimistic
+
+
+#### React Portals
+
 
 
 ##### why is app making endless stream of requests ?
@@ -236,27 +242,55 @@ With useReducer we only have one function to manage state, where as with redux w
 
 slice automatically create reducers and actionTypes
 
+https://github.com/sushmanthnatha/cars
 ```js
 // sample redux store setup
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const songsSlice = createSlice({
-  name: "song",
-  initialState: [],
-  reducers: {
-    // state is not big state object, its only piece of state managed by this reducer
-    addSong(state, action) {
-      state.push(action.payload);
-    },
-    removeSong(state, action) {},
-  },
-});
+const resetApp = createAction("app/reset");
 
+const songSlice = createSlice({
+    name: 'song',
+    initialState: ["nachavule","dheera dheera"],
+    reducers: {
+        addSong(state, action) {
+            state.push(action.payload)
+        },
+        removeSong(state, action) {
+            state.splice(state.indexOf(action.payload), 1);
+        },
+    },
+    // Way to add extra reducers
+    extraReducers(builder) { 
+        builder.addCase(resetApp, (state, action) => {
+            return []
+        })
+    }
+})
 const store = configureStore({
   reducer: {
     songs: songsSlice.reducer,
   },
 });
+
+// accessing state
+import { Provider } from 'react-redux';
+  <Provider store={store}>
+    <App />
+  </Provider>
+  const dispatch = useDispatch();
+  const name = useSelector((state) => state.form.name);
+
+//this gives memoized version by default
+const memoizedCars = createSelector(
+  [(state) => state.cars.carsList, (state) => state.cars.searchTerm],
+  (carsList, searchTerm) =>
+    carsList.filter((car) =>
+      car.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+);
+
+// others
 
 console.log(store);
 const startingState = store.getState();

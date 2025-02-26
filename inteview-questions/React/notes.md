@@ -1,14 +1,45 @@
-# React
+# React - Launched in 2013
 
 from index.html, main.js and main.css will be called,
 analyze the bundle
 search for alternate libraries/import partial libraries
+
 #### what is flow in react application ?
 1) Transpilation ( es6 or es5 or so) - for browser compatibility
 2) Compilation ( HighLevel code to MachineLevel code ) -  for the actual execution of code
 3) bundling - COmbines multiple js files into one or few files, treeshaking ( removes unused js imports)
 4) Minification - Removes whitespace, comments, shortens var names etc
 5) Compression - GZip - Further reduces file size before sending to client
+
+#### what are key features of React
+- JSX
+- Virtual DOM
+- One-way data binding
+- Hooks / Lifecycle methods
+- Component based architecture
+- Modular / Flexible
+- Extensions : . React uses extensions to aid application building
+- Huge ecosystem & community support
+
+#### What is Flux in react ?
+Flux is an architectural pattern used for managing state in ReactJS applications. It was introduced by Facebook to address the complexity of state management in large-scale applications. Flux consists of a unidirectional data flow, making it easier to understand and manage the state changes in an application.
+
+#### What are limitations/drawbacks in React ?
+
+- Poor SEO without SSR
+- No MVC architecture
+- No builtin state management/routing
+- Performance Issues with Large Applications (if not optimized with best practices)
+- Frequent updates
+- JSX ( hard to debug, hard to read)
+ - Not a full-fledged framework
+
+#### Angular vs React
+![alt text](image.png)
+
+
+#### what are pure components/ stateless components
+The components/functions which solely depend on props provided to it. It always give same output provided same inputs.
 
 
 #### What are various ways to optimize react application ?
@@ -126,6 +157,9 @@ const app = express();
 app.use(compression());
 ```
 
+
+#### what is higher order component ?
+In React, a higher-order component is a function that takes a component as an argument and returns a new component that wraps the original component.They allow you to reuse component logic across multiple components.
 
 
 

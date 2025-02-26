@@ -85,6 +85,40 @@ const copy = JSON.parse(JSON.stringify(obj));
 import cloneDeep from 'lodash/cloneDeep';
 const copy = cloneDeep(obj);
 // handles all cases, but its an exteral library
+
+
+// Custom Deep Copy
+
+function deepClone(obj) {
+  if (obj === null || typeof obj !== "object") return obj; // Return primitives & functions as is
+
+  let clone = Array.isArray(obj) ? [] : {};
+
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clone[key] =
+        typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key];
+    }
+  }
+
+  return clone;
+}
+
+const obj = {
+  name: "Sushmanth",
+  greet: function () {
+    return "Hello!";
+  },
+  nested: {
+    age: 25,
+  },
+};
+
+const cloned = deepClone(obj);
+console.log(cloned.greet()); // ✅ "Hello!"
+console.log(cloned.nested.age); // ✅ 25
+console.log(cloned === obj); // ❌ false (it's a new object)
+
 ```
 
 #### What are call, apply, bind ?
@@ -197,8 +231,109 @@ const myPromise = new Promise((resolve, reject) => {
 myPromise
     .then(result => {console.log(result);})
     .catch(error => {console.log("Error:", error);});
+    .finally()
 ```
 
 
+### Prototypes and Inheritance
 
-#### What is 
+Objects inherit from other objects using prototypes.
+Object.create(proto) creates an object with a specific prototype.
+Prototype chain allows JavaScript to look up properties.
+Classes in JavaScript are just a nicer way to use prototypal inheritance.
+🔥 Prototypal inheritance is powerful, flexible, and different from classical OOP! Let me know if you want deeper examples. 🚀
+
+#### What is Prototype?
+A prototype in JavaScript is a built-in mechanism that allows objects to inherit properties and methods from other objects. Every JavaScript object has an internal property called [[Prototype]] (which can be accessed via `__proto__`) that links to another object, called its prototype.
+
+
+#### What is Prototypal Inheritance?
+
+Prototypal inheritance is a way for objects to inherit properties and methods from other objects. Instead of copying properties like in classical inheritance (e.g., in Java or C++), JavaScript uses prototypes—a mechanism where objects are linked to other objects.
+````
+const animal = {
+  eat() {
+    console.log("Eating...");
+  }
+};
+
+const dog = Object.create(animal); // dog inherits from animal
+dog.bark = function() {
+  console.log("Woof!");
+};
+
+dog.eat(); // Inherited from animal
+dog.bark(); // Defined in dog
+````
+
+#### What is Prototype Chain?
+The prototype chain is the series of objects linked together through their `__proto__` properties. When you try to access a property on an object, JavaScript looks in the object itself. If it’s not found, it looks in the object’s prototype, then the prototype’s prototype, and so on, until it reaches null.
+
+````
+console.log(dog.__proto__ === animal); // true
+console.log(animal.__proto__ === Object.prototype); // true
+console.log(Object.prototype.__proto__); // null
+
+````
+dog → animal → Object.prototype → null (end of chain)
+
+#### Why we call it ?
+`__proto__` is a reference to an object’s prototype. It’s called `__proto__` because it directly points to the prototype of the object. However, it’s not the same as prototype, which is used in constructor functions.
+
+#### What is inhertance in Javascript?
+
+
+Even though they sound similar, `__proto__` and prototype are not the same.
+
+### `__proto__` vs `prototype` {#proto-vs-prototype}
+-  `__proto__` (Dunder Proto)
+It is an internal reference that points to an object’s prototype.
+Exists on every object in JavaScript.
+Helps JavaScript look up properties and methods in the prototype chain.
+Can be accessed but should not be modified directly (use Object.getPrototypeOf() instead).
+-  `prototype`
+It is a property that exists only on constructor functions (function MyFunc() {}) and classes.
+Defines properties and methods that instances created using the new keyword will inherit.
+Helps create shared methods to save memory.
+
+````
+//Array prototyping
+
+let arr1 = ['sush', 'jash', 'sai', 'sarath', 'surya']
+
+Array.prototype.printAll = function () {
+    
+    this.forEach((value, index) => {
+        console.log(`Index ${index}: ${value}`);
+    });
+}
+
+arr1.printAll()
+````
+
+````
+//Function prototyping
+
+ function dd() {
+     console.log('dd')
+ }
+
+ dd.prototype.doit = function () {
+     console.log('doit added through prototype')
+ }
+
+ const a12 = new dd()
+ a12.doit()
+
+````
+
+````
+Object.setPrototypeOf(arr1, null);
+use to set prototype (__proto__) for any object
+
+Object.getPrototypeOf(arr1);
+
+````
+![alt text](image-2.png)
+
+#### What is flatterning ?
