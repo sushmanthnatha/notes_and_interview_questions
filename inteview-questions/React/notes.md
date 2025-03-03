@@ -158,6 +158,23 @@ app.use(compression());
 ```
 
 
+#### How does React reconcile changes in the Virtual DOM?
+React uses the Fiber Reconciler, an incremental rendering algorithm that prioritizes updates, batches changes, and prevents UI blocking. Understanding Fiber helps explain how React optimizes rendering.
+
+#### What are React Server Components (RSC), and how do they differ from Client Components?
+RSCs run on the server, reducing bundle size and improving performance by sending only serialized UI, not JS logic. Unlike Client Components, they don’t handle interactivity but drastically improve SSR efficiency.
+
+#### How does React handle concurrent rendering, and why is it useful?
+With Concurrent Mode, React can pause and resume rendering, avoiding UI blocking. Features like useTransition help prioritize updates—critical for optimizing performance in complex apps.
+
+#### What’s the difference between useLayoutEffect and useEffect, and when should you use each?
+useEffect: Runs after the paint, suitable for data fetching and subscriptions.
+useLayoutEffect: Runs before the paint, useful for measurements and DOM mutations to avoid flickering.
+
+#### How does React manage state updates internally, and why is batching important?
+React batches state updates within event handlers to reduce re-renders. In React 18, batching even extends to setTimeout and async updates, optimizing performance.
+
+
 #### what is higher order component ?
 In React, a higher-order component is a function that takes a component as an argument and returns a new component that wraps the original component.They allow you to reuse component logic across multiple components.
 

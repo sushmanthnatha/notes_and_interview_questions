@@ -104,38 +104,31 @@ Uses a generational model (Gen 0, Gen 1, Gen 2) for efficiency.
 ![alt text](./images/image4.png)
 
 
-#### 11 :- Can garbage collector claim unmanaged objects ?   
+#### Can garbage collector claim unmanaged objects ?   No
 
+#### What is the importance of CTS ?   
 
+It ensures that data types defined in two different languages gets compiled to a common data type
    
 
+#### Explain CLS ?    
 
-#### 12 :- What is the importance of CTS ?   
+Set of guidelines for interoperability of languages in .net
+when anyy net programming languages adhers to these rules, it can be consumed by any language following .net specs
 
 
+#### Difference between Stack vs Heap ?   
+
+stack - value types - primititve datatypes (int, double, bool)
+heap - reference types - arrays , string, objects etc
+
+![alt text](./images/image5.png)
    
 
+#### Explain boxing and unboxing ?   
+boxing - value type to reference
 
-#### 13 :- Explain CLS ?    
-
-
-   
-
-
-#### 14 :- Difference between Stack vs Heap ?   
-
-
-   
-
-
-#### 15 :- What are Value types & Reference types?   
-
-
-   
-
-
-#### 16 :- Explain boxing and unboxing ?   
-
+unboxing - reference type to value type
 
    
 
@@ -161,6 +154,10 @@ Uses a generational model (Gen 0, Gen 1, Gen 2) for efficiency.
 #### 20 :- Differentiate between Array and ArrayList ?   
 
 
+### what is extern keyword ?
+The extern modifier is used to declare a method that is implemented externally. A common use of the extern modifier is with the DllImport attribute when you are using Interop services to call into unmanaged code. In this case, the method must also be declared as static, as shown in the following example:
+
+
 #### What is operator overloading & custom overloading ?
 
 ````
@@ -184,6 +181,10 @@ public static ComplexNumber operator +(ComplexNumber a1, ComplexNumber a2)
 #### access specifiers
 
 #### ref vs out
+
+#### const vs readonly
+
+#### var vs dynamic
 
 #### struct vs class
 
